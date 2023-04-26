@@ -5,9 +5,9 @@ export class RocketTest {
   private endpoint =
     'http://1060444989355026.mqrest.cn-shanghai-internal.aliyuncs.com';
   private topic = 'scheduledtopic';
-  private instanceId = 'MQ_INST_1060444989355026_BYWtE2cw';
-  private accessKeyId = 'LTAI5tRTN9x2QHwsKSbbbsie';
-  private accessKeySecret = 'n8cZocA1AaMBQyaIhDEJwCWf8hmkgP';
+  private instanceId = 'xyz';
+  private accessKeyId = 'xyz';
+  private accessKeySecret = 'xyz';
 
   private client = new MQClient(
     this.endpoint,
