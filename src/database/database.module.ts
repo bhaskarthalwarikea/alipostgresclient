@@ -13,7 +13,7 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
         username: configService.get('POSTGRES_USER'),
         password: configService.get('POSTGRES_PASSWORD'),
         database: configService.get('POSTGRES_DB'),
-        entities: [__dirname + '/src/posts/post.entity.ts'],
+        entities: [__dirname + '/src/posts/persistedorder.entity.ts'],
         synchronize: true,
         autoLoadEntities: true,
       }),

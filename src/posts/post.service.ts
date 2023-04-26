@@ -1,6 +1,6 @@
 import { InjectRepository } from '@nestjs/typeorm';
 import { Injectable } from '@nestjs/common';
-import Post from './post.entity';
+import { PersistedOrder } from './persistedorder.entity';
 import { Repository } from 'typeorm';
 import { HttpException } from '@nestjs/common';
 import { HttpStatus } from '@nestjs/common';
@@ -8,8 +8,8 @@ import { HttpStatus } from '@nestjs/common';
 @Injectable()
 export class PostService {
   constructor(
-    @InjectRepository(Post)
-    private postsRepository: Repository<Post>,
+    @InjectRepository(PersistedOrder)
+    private postsRepository: Repository<PersistedOrder>,
   ) {}
 
   getAllPosts(): any {
@@ -23,16 +23,26 @@ export class PostService {
     if (post) {
       return post;
     }
+    return;
+  }
+
+  async getPostByMessageIdId(id: string) {
+    const post = await this.postsRepository.findOne({
+      where: { messageId: id },
+    });
+    if (post) {
+      return post;
+    }
     throw new HttpException('Post not found', HttpStatus.NOT_FOUND);
   }
 
-  async createPost(post: Post) {
-    const newPost = await this.postsRepository.create(post);
+  async createPost(post: PersistedOrder) {
+    const newPost = this.postsRepository.create(post);
     await this.postsRepository.save(newPost);
     return newPost;
   }
 
-  async updatePost(id: number, post: Post) {
+  async updatePost(id: number, post: PersistedOrder) {
     await this.postsRepository.update(id, post);
     const updatedPost = await this.postsRepository.findOne({
       where: { id: id },

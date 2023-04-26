@@ -1,15 +1,13 @@
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
-class Post {
+export class PersistedOrder {
   @PrimaryGeneratedColumn()
   public id: number;
 
   @Column()
-  public title: string;
+  public eventName: string;
 
   @Column()
-  public content: string;
+  public messageId: string;
 }
-
-export default Post;
